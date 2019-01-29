@@ -1,6 +1,6 @@
-package com.jeorgius.back.repos;
+package com.jeorgius.back.domain.repos;
 
-import com.jeorgius.back.entities.Order;
+import com.jeorgius.back.domain.entities.Order;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 

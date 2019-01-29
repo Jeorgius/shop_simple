@@ -1,4 +1,6 @@
-package com.jeorgius.back.entities;
+package com.jeorgius.back.domain.entities;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
@@ -10,11 +12,12 @@ public class OrderDetail {
     private long orderdetail_id;
 
     private long price;
-    private int qty;//quantity
+    private int qty; //quantity
     private long total_price;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonBackReference // prevents recursion when serialized in JSON
     @JoinColumn(name="order_id")
+    @ManyToOne(fetch = FetchType.EAGER)
     private Order order;
 
     public long getOrderdetail_id() {

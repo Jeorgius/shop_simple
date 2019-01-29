@@ -1,4 +1,6 @@
-package com.jeorgius.back.entities;
+package com.jeorgius.back.domain.entities;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,10 +16,11 @@ public class Order {
     //Customers' email
     private String email;
 
-    //Order add date in "yyyy-MM-dd HH:mm:ss.SSS" format
+    //Order add date_add in "yyyy-MM-dd HH:mm:ss.SSS" format
     @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    private Date date_add;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderDetail> orderDetailList;
 
@@ -30,12 +33,12 @@ public class Order {
         this.email = email;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getDate_add() {
+        return date_add;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDate_add(Date date_add) {
+        this.date_add = date_add;
     }
 
     public List<OrderDetail> getOrderDetailList() {

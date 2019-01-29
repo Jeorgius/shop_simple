@@ -1,4 +1,4 @@
-package com.jeorgius.back.entities;
+package com.jeorgius.back.domain.entities;
 
 import javax.persistence.*;
 

@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background-color: #000;
+  color: whitesmoke;
+  font-family: Calibri, Arial sans-serif;
+  font-size: 10pt;
+}
+h2 {
+  font-family: Georgia, Times, serif;
+  font-weight: bold;
+  font-size: 24pt;
+  margin: 35px 0;
+}
+.header {
+  margin: 0 10px;
+  padding-left: 30px;
+}
+

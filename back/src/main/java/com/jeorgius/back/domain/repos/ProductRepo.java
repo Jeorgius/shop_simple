@@ -1,6 +1,6 @@
-package com.jeorgius.back.repos;
+package com.jeorgius.back.domain.repos;
 
-import com.jeorgius.back.entities.Product;
+import com.jeorgius.back.domain.entities.Product;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
