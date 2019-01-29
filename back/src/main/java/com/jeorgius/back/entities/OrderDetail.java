@@ -13,6 +13,10 @@ public class OrderDetail {
     private int qty;//quantity
     private long total_price;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="order_id")
+    private Order order;
+
     public long getOrderdetail_id() {
         return orderdetail_id;
     }
@@ -43,5 +47,13 @@ public class OrderDetail {
 
     public void setTotal_price(long total_price) {
         this.total_price = total_price;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }
