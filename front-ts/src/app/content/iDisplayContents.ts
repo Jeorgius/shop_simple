@@ -1,20 +1,20 @@
 // Interfaces to display content are all located here, so the files with them won't multiply very quickly
 
-export interface IProductList {
+export interface iProductList {
   product_id: number,
   price_actual: number,
   title: string,
   description: string
 }
 
-export interface IOrderList{
+export interface iOrderList{
   order_id: number,
   email: string,
   createdDate: string,
-  orderdetail: [IOrderDetail]
+  orderdetail: [iOrderDetail]
 }
 
-export interface IOrderDetail {
+export interface iOrderDetail {
   orderdetail_id:number,
   price_added: number,
   qty: number,

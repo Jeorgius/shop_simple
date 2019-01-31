@@ -11,6 +11,7 @@ import { OrderDetailComponent } from './content/order-detail/order-detail.compon
 import { ProductCreatorComponent } from './content/product-creator/product-creator.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { MainComponent } from './content/main/main.component';
+import {DisplayService} from "./content/display.service";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { MainComponent } from './content/main/main.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [DisplayService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
