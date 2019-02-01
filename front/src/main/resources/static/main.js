@@ -165,12 +165,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _content_product_creator_product_creator_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./content/product-creator/product-creator.component */ "./src/app/content/product-creator/product-creator.component.ts");
 /* harmony import */ var _navigation_navigation_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./navigation/navigation.component */ "./src/app/navigation/navigation.component.ts");
 /* harmony import */ var _content_main_main_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./content/main/main.component */ "./src/app/content/main/main.component.ts");
+/* harmony import */ var _content_display_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./content/display.service */ "./src/app/content/display.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -203,11 +205,55 @@ var AppModule = /** @class */ (function () {
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"]
             ],
-            providers: [],
+            providers: [_content_display_service__WEBPACK_IMPORTED_MODULE_12__["DisplayService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/content/display.service.ts":
+/*!********************************************!*\
+  !*** ./src/app/content/display.service.ts ***!
+  \********************************************/
+/*! exports provided: DisplayService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DisplayService", function() { return DisplayService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var DisplayService = /** @class */ (function () {
+    function DisplayService(Http) {
+        this.Http = Http;
+        this.JavaServer = "http://localhost:8001";
+    }
+    DisplayService.prototype.displayProducts = function () {
+        return this.Http.get(this.JavaServer + "/products");
+    };
+    DisplayService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], DisplayService);
+    return DisplayService;
 }());
 
 
@@ -499,6 +545,7 @@ module.exports = "<p>\r\n  products works!\r\n</p>\r\n"
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductsComponent", function() { return ProductsComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _display_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../display.service */ "./src/app/content/display.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -509,10 +556,15 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var ProductsComponent = /** @class */ (function () {
-    function ProductsComponent() {
+    function ProductsComponent(Display) {
+        this.Display = Display;
+        this.products = [];
     }
     ProductsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.Display.displayProducts().subscribe(function (data) { return _this.products = data; });
     };
     ProductsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -520,7 +572,7 @@ var ProductsComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./products.component.html */ "./src/app/content/products/products.component.html"),
             styles: [__webpack_require__(/*! ./products.component.css */ "./src/app/content/products/products.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_display_service__WEBPACK_IMPORTED_MODULE_1__["DisplayService"]])
     ], ProductsComponent);
     return ProductsComponent;
 }());
