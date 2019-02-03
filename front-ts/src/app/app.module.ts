@@ -11,7 +11,7 @@ import { OrderDetailComponent } from './content/order-detail/order-detail.compon
 import { ProductCreatorComponent } from './content/product-creator/product-creator.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { MainComponent } from './content/main/main.component';
-import {DisplayService} from "./content/display.service";
+import {DisplayService} from "./content/services/display.service";
 
 @NgModule({
   declarations: [

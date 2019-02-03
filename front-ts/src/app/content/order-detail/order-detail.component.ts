@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
-import {iOrderDetail} from "../iDisplayContents";
-import {DisplayService} from "../display.service";
+import {iOrderDetail} from "../services/iDisplayContents";
+import {DisplayService} from "../services/display.service";
 
 @Component({
   selector: 'app-order-detail',

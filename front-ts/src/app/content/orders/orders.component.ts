@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {DisplayService} from "../display.service";
+import {DisplayService} from "../services/display.service";
 import {Router} from "@angular/router";
 
 @Component({

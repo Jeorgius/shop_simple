@@ -27,4 +27,8 @@ public class DbService {
     public List<Order> getOrders(){
         return orderRepo.findOrders();
     }
+
+    public void saveNewProduct(Product product){
+        productRepo.save(product);
+    }
 }
