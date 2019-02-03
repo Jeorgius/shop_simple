@@ -1,0 +1,14 @@
+.orders{
+  display: flex;
+}
+
+.order{
+  text-align: center;
+  margin: 10px;
+  height: 40px;
+  width: 100%;
+}
+/*shadow box instead of border*/
+.order:hover{
+  box-shadow: 0 2px 0 antiquewhite, 0 2px 0 antiquewhite inset;
+}

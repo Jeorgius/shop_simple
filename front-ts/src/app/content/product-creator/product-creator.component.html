@@ -1,3 +1,9 @@
-<p>
-  product-creator works!
-</p>
+<form #registerForm="ngForm" (ngSubmit)="submitReg()">
+  {{userReg | json}}
+  <div>Your Nickname:<br/><input class="Login_forms" type="text" name="nickname" [(ngModel)]="userReg.nick" /></div>
+  <div>Email:<br/> <input class="Login_forms" type="text" name="email" [(ngModel)]="userReg.email" /></div>
+  <div>Name:<br/> <input class="Login_forms" type="text" name="name" [(ngModel)]="userReg.name" /></div>
+  <div>Surname:<br/> <input class="Login_forms" type="text" name="surname" [(ngModel)]="userReg.surname" /> <br /></div>
+  <div>Password:<br/> <input class="Login_forms" type="password" name="pw" [(ngModel)]="userReg.pw" /> <br /></div>
+  <button id="registerButton" type="submit">Push it already</button>
+</form>

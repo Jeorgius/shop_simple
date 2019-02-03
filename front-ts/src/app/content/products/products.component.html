@@ -1,3 +1,8 @@
-<p>
-  products works!
-</p>
+<div class="products">
+  <div class="product" *ngFor="let product of products" >
+    <div>{{product.order_id}}</div>
+    <div>{{product.email}}</div>
+    <div>{{product.date_add}}</div>
+    <div>{{product.order_total_sum}}</div>
+  </div>
+</div>

@@ -10,13 +10,13 @@ export interface iProductList {
 export interface iOrderList{
   order_id: number,
   email: string,
-  createdDate: string,
-  orderdetail: [iOrderDetail],
-  sum: number
+  date_add: string,
+  OrderDetailList: [iOrderDetail],
+  order_total_sum: number
 }
 
 export interface iOrderDetail {
-  orderdetail_id:number,
+  orderdetail_id: number,
   price_added: number,
   qty: number,
   price_total: number

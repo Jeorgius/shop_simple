@@ -2,11 +2,10 @@ ul{
   display: flex;
 }
 
-
 .navigation_bar{
   text-align: center;
 }
-
+/*shadow box instead of border*/
 li:hover{
   box-shadow: 0 2px 0 antiquewhite, 0 2px 0 antiquewhite inset;
 }
@@ -26,4 +25,8 @@ a:visited {
 a:link {
   color: whitesmoke;
   background-color: rgba(0, 0, 0, 0);
+}
+
+.content{
+  text-align: center;
 }
