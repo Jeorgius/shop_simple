@@ -16,7 +16,10 @@ public class Order {
     //Customers' email
     private String email;
 
-    //Order add date_add in "yyyy-MM-dd HH:mm:ss.SSS" format
+    //To manage finances, I think it's better to have calculated order sum
+    private long order_total_sum;
+
+    //Order create date_add in "yyyy-MM-dd HH:mm:ss.SSS" format
     @Temporal(TemporalType.TIMESTAMP)
     private Date date_add;
 
@@ -55,5 +58,13 @@ public class Order {
 
     public void setOrder_id(long order_id) {
         this.order_id = order_id;
+    }
+
+    public long getOrder_total_sum() {
+        return order_total_sum;
+    }
+
+    public void setOrder_total_sum(long order_total_sum) {
+        this.order_total_sum = order_total_sum;
     }
 }
