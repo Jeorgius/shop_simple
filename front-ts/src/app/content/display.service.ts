@@ -13,4 +13,10 @@ export class DisplayService {
   displayProducts(){
     return this.Http.get<iProductList[]>(this.JavaServer+"/products");
   }
+  displayOrders(){
+    return this.Http.get<iOrderList[]>(this.JavaServer+"/orders")
+  }
+  displayOrderDetails(orderId){
+    return this.Http.get<iOrderDetail[]>(this.JavaServer+"/orders/"+orderId);
+  }
 }

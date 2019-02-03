@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
+import {iOrderDetail} from "../iDisplayContents";
+import {DisplayService} from "../display.service";
 
 @Component({
   selector: 'app-order-detail',
@@ -7,9 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderDetailComponent implements OnInit {
 
-  constructor() { }
+  public orderDetailList = [];
+  constructor(
+    private SelectedLink :ActivatedRoute,
+    private Display :DisplayService
+  ) { }
 
+  //pass the link taken from the URL to REST service and get OrderDetailList
+  //based on its orderId
   ngOnInit() {
+    this.Display.displayOrderDetails(
+      this.SelectedLink.snapshot.paramMap.get("order")
+    );
   }
 
 }

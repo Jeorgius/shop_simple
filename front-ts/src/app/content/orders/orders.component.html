@@ -1,3 +1,6 @@
-<p>
-  orders work!
-</p>
+<div *ngFor="let order of orderList" >
+  <div>{{order.order_id}}</div>
+  <div>{{order.email}}</div>
+  <div>{{order.createdDate}}</div>
+
+</div>

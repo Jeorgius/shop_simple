@@ -11,7 +11,8 @@ export interface iOrderList{
   order_id: number,
   email: string,
   createdDate: string,
-  orderdetail: [iOrderDetail]
+  orderdetail: [iOrderDetail],
+  sum: number
 }
 
 export interface iOrderDetail {
