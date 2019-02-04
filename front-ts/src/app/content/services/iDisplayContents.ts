@@ -2,7 +2,7 @@
 
 export interface iProductList {
   product_id: number,
-  price_actual: number,
+  price: number,
   title: string,
   description: string
 }

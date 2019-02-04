@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NewProduct} from "./new-product";
+import {SaveService} from "../services/save.service";
 
 @Component({
   selector: 'app-product-creator',
@@ -10,10 +11,16 @@ import {NewProduct} from "./new-product";
   ]
 })
 export class ProductCreatorComponent implements OnInit {
-  newProduct = new NewProduct('',0,'');
-  constructor() { }
 
-  ngOnInit() {
+  public newProduct = new NewProduct('',0,'');
+  public resultMsg = "";
+  constructor(private Save :SaveService) { }
+
+  ngOnInit() {}
+
+  submitProduct(){
+    this.Save.saveProduct(this.newProduct)
+      .subscribe(data => this.resultMsg = data,
+                error => this.resultMsg = error);
   }
-
 }

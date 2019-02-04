@@ -1,5 +1,6 @@
+<input type="button" value="New Order" (click)="goToOrder(order.order_id)">
 <div class="orders">
-  <div class="order" *ngFor="let order of orderList" >
+  <div class="order"  *ngFor="let order of orderList" (click)="goToOrder(order.order_id)">
     <div>{{order.order_id}}</div>
     <div>{{order.email}}</div>
     <div>{{order.date_add}}</div>

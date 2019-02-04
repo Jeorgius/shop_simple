@@ -3,9 +3,7 @@ package com.jeorgius.back.rest;
 import com.jeorgius.back.domain.DbService;
 import com.jeorgius.back.domain.entities.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
@@ -20,8 +18,21 @@ public class RestPost {
     }
 
     @PostMapping
-    public String createProduct(Product product){
+    public String createProduct(@RequestBody Product product){
         db.saveNewProduct(product);
+        return "Success";
+    }
+
+    @PostMapping
+    public String addToCart(@RequestParam("product_id") String product_id,
+                            @RequestParam("qty") String qty){
+        db.addToCart(product_id,qty);
+        return "Success";
+    }
+
+    @PostMapping
+    public String createOrder(){
+        
         return "Success";
     }
 }

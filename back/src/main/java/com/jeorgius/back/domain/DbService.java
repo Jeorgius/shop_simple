@@ -1,6 +1,7 @@
 package com.jeorgius.back.domain;
 
 import com.jeorgius.back.domain.entities.Order;
+import com.jeorgius.back.domain.entities.OrderDetail;
 import com.jeorgius.back.domain.entities.Product;
 import com.jeorgius.back.domain.repos.OrderRepo;
 import com.jeorgius.back.domain.repos.ProductRepo;
@@ -30,5 +31,26 @@ public class DbService {
 
     public void saveNewProduct(Product product){
         productRepo.save(product);
+    }
+
+    public void addToCart(String product_id, String qty){
+        Order order = orderRepo.findLastOrder();
+        if(order==null) order = new Order();
+
+        Product product = productRepo.findOneProduct(product_id);
+
+        //add orderdetail to database
+        order.getOrderDetailList().add(
+                new OrderDetail(
+                        product.getPrice(),
+                        Integer.parseInt(qty),
+                        Long.parseLong(qty)*product.getPrice(),
+                        order));
+        //recalculate order total price
+        for (OrderDetail orderDetail:order.getOrderDetailList()) {
+            order.setOrder_total_sum(order.getOrder_total_sum()+orderDetail.getTotal_price());
+        }
+
+        orderRepo.save(order);
     }
 }

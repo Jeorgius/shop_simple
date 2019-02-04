@@ -15,6 +15,13 @@ public class OrderDetail {
     private int qty; //quantity
     private long total_price;
 
+    public OrderDetail(long price, int qty, long total_price, Order order) {
+        this.price = price;
+        this.qty = qty;
+        this.total_price = total_price;
+        this.order = order;
+    }
+
     @JsonBackReference // prevents recursion when serialized in JSON
     @JoinColumn(name="order_id")
     @ManyToOne(fetch = FetchType.EAGER)

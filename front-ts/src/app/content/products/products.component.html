@@ -1,8 +1,13 @@
 <div class="products">
   <div class="product" *ngFor="let product of products" >
-    <div>{{product.order_id}}</div>
-    <div>{{product.email}}</div>
-    <div>{{product.date_add}}</div>
-    <div>{{product.order_total_sum}}</div>
+    <div><b>ID: </b>{{product.product_id}}</div>
+    <div>${{product.price}}</div>
+    <div><b>{{product.title}}</b></div>
+    <div>{{product.description}}</div>
+    <br/><br/>
+    <div>Quantity
+      <input type="number" [(ngModel)]="quantity" >
+      <input type="button" (click)="addToOrder(product.product_id,quantity)">
+    </div>
   </div>
 </div>

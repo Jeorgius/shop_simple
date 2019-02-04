@@ -11,4 +11,7 @@ import java.util.List;
 public interface ProductRepo extends CrudRepository<Product,Long> {
     @Query("Select p from Product p order by product_id DESC")
     List<Product> findProducts();
+
+    @Query("Select p from Product p where product_id = :product_id")
+    Product findOneProduct(String product_id);
 }

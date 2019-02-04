@@ -103,7 +103,7 @@ module.exports = ".content{\r\n  text-align: center;\r\n}\r\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<div style=\"text-align:center\">\r\n  <h1>\r\n    Test shop \"At Jeorgius'\"\r\n  </h1>\r\n  <app-navigation></app-navigation>\r\n  <div class=\"content\">\r\n    <router-outlet></router-outlet>\r\n  </div>\r\n</div>\r\n\r\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<div style=\"text-align:center\">\r\n  <h1>\r\n    Test shop \"At Jeorgius'\"\r\n  </h1>\r\n  <div class=\"content\">\r\n    <app-navigation></app-navigation>\r\n    <router-outlet></router-outlet>\r\n  </div>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -165,7 +165,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _content_product_creator_product_creator_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./content/product-creator/product-creator.component */ "./src/app/content/product-creator/product-creator.component.ts");
 /* harmony import */ var _navigation_navigation_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./navigation/navigation.component */ "./src/app/navigation/navigation.component.ts");
 /* harmony import */ var _content_main_main_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./content/main/main.component */ "./src/app/content/main/main.component.ts");
-/* harmony import */ var _content_display_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./content/display.service */ "./src/app/content/display.service.ts");
+/* harmony import */ var _content_services_display_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./content/services/display.service */ "./src/app/content/services/display.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -205,55 +205,11 @@ var AppModule = /** @class */ (function () {
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"]
             ],
-            providers: [_content_display_service__WEBPACK_IMPORTED_MODULE_12__["DisplayService"]],
+            providers: [_content_services_display_service__WEBPACK_IMPORTED_MODULE_12__["DisplayService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/content/display.service.ts":
-/*!********************************************!*\
-  !*** ./src/app/content/display.service.ts ***!
-  \********************************************/
-/*! exports provided: DisplayService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DisplayService", function() { return DisplayService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var DisplayService = /** @class */ (function () {
-    function DisplayService(Http) {
-        this.Http = Http;
-        this.JavaServer = "http://localhost:8001";
-    }
-    DisplayService.prototype.displayProducts = function () {
-        return this.Http.get(this.JavaServer + "/products");
-    };
-    DisplayService = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
-            providedIn: 'root'
-        }),
-        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
-    ], DisplayService);
-    return DisplayService;
 }());
 
 
@@ -356,6 +312,8 @@ module.exports = "<p>\r\n  order-detail works!\r\n</p>\r\n"
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrderDetailComponent", function() { return OrderDetailComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_display_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/display.service */ "./src/app/content/services/display.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -366,10 +324,18 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var OrderDetailComponent = /** @class */ (function () {
-    function OrderDetailComponent() {
+    function OrderDetailComponent(SelectedLink, Display) {
+        this.SelectedLink = SelectedLink;
+        this.Display = Display;
+        this.orderDetailList = [];
     }
+    //pass the link taken from the URL to REST service and get OrderDetailList
+    //based on its orderId
     OrderDetailComponent.prototype.ngOnInit = function () {
+        this.Display.displayOrderDetails(this.SelectedLink.snapshot.paramMap.get("order"));
     };
     OrderDetailComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -377,7 +343,8 @@ var OrderDetailComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./order-detail.component.html */ "./src/app/content/order-detail/order-detail.component.html"),
             styles: [__webpack_require__(/*! ./order-detail.component.css */ "./src/app/content/order-detail/order-detail.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
+            _services_display_service__WEBPACK_IMPORTED_MODULE_2__["DisplayService"]])
     ], OrderDetailComponent);
     return OrderDetailComponent;
 }());
@@ -393,7 +360,7 @@ var OrderDetailComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".orders{\r\n  display: flex;\r\n}\r\n\r\n.order{\r\n  text-align: center;\r\n  margin: 10px;\r\n  height: 40px;\r\n  width: 100%;\r\n}\r\n\r\n/*shadow box instead of border*/\r\n\r\n.order:hover{\r\n  box-shadow: 0 2px 0 antiquewhite, 0 2px 0 antiquewhite inset;\r\n}\r\n"
 
 /***/ }),
 
@@ -404,7 +371,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  orders works!\r\n</p>\r\n"
+module.exports = "<div class=\"orders\">\r\n  <div class=\"order\" *ngFor=\"let order of orderList\" >\r\n    <div>{{order.order_id}}</div>\r\n    <div>{{order.email}}</div>\r\n    <div>{{order.date_add}}</div>\r\n    <div>{{order.order_total_sum}}</div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -419,6 +386,8 @@ module.exports = "<p>\r\n  orders works!\r\n</p>\r\n"
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrdersComponent", function() { return OrdersComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_display_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/display.service */ "./src/app/content/services/display.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -429,20 +398,54 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var OrdersComponent = /** @class */ (function () {
-    function OrdersComponent() {
+    function OrdersComponent(Display, ReRoute) {
+        this.Display = Display;
+        this.ReRoute = ReRoute;
+        this.orderList = [];
     }
     OrdersComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.Display.displayOrders().subscribe(function (data) { return _this.orderList = data; });
+    };
+    OrdersComponent.prototype.goToOrder = function (order) {
+        this.ReRoute.navigate(["/orders", order.order_id]);
     };
     OrdersComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-orders',
             template: __webpack_require__(/*! ./orders.component.html */ "./src/app/content/orders/orders.component.html"),
-            styles: [__webpack_require__(/*! ./orders.component.css */ "./src/app/content/orders/orders.component.css")]
+            styles: [__webpack_require__(/*! ./orders.component.css */ "./src/app/content/orders/orders.component.css"), __webpack_require__(/*! ../../app.component.css */ "./src/app/app.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_services_display_service__WEBPACK_IMPORTED_MODULE_1__["DisplayService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], OrdersComponent);
     return OrdersComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/content/product-creator/new-product.ts":
+/*!********************************************************!*\
+  !*** ./src/app/content/product-creator/new-product.ts ***!
+  \********************************************************/
+/*! exports provided: NewProduct */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NewProduct", function() { return NewProduct; });
+var NewProduct = /** @class */ (function () {
+    function NewProduct(title, price, description) {
+        this.title = title;
+        this.price = price;
+        this.description = description;
+    }
+    return NewProduct;
 }());
 
 
@@ -456,7 +459,7 @@ var OrdersComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".Login_forms {\r\n  width: 60%;\r\n  color:whitesmoke;\r\n  /*margin: 0 10px 5px 5px;*/\r\n  background: transparent;\r\n  border-color: whitesmoke;\r\n  border-radius: 5px;\r\n  padding-left: inherit;\r\n  margin-top: 5px;\r\n  font-size: 25px;\r\n}\r\n#registerButton {\r\n  background-color: #77FF77;\r\n  margin-top: 10px;\r\n  outline: none;\r\n  border-radius: 5px;\r\n}\r\ninput {\r\n  outline: none;\r\n  text-indent: 5px;\r\n}\r\n"
 
 /***/ }),
 
@@ -467,7 +470,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  product-creator works!\r\n</p>\r\n"
+module.exports = "<form #registerForm=\"ngForm\" (ngSubmit)=\"submitProduct()\">\r\n  {{newProduct | json}}\r\n  <div>Product title:<br/><input class=\"Login_forms\" type=\"text\" name=\"title\" [(ngModel)]=\"newProduct.title\" /></div>\r\n  <div>Price:<br/> <input class=\"Login_forms\" type=\"number\" name=\"price\" [(ngModel)]=\"newProduct.price\" /></div>\r\n  <div>Description:<br/> <textarea class=\"Login_forms\" type=\"text\" name=\"description\" [(ngModel)]=\"newProduct.description\"></textarea></div>\r\n  <button id=\"registerButton\" type=\"submit\">Push it already</button>\r\n</form>\r\n<br/><br/>\r\n<div>{{resultMsg}}</div>\r\n"
 
 /***/ }),
 
@@ -482,6 +485,8 @@ module.exports = "<p>\r\n  product-creator works!\r\n</p>\r\n"
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductCreatorComponent", function() { return ProductCreatorComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _new_product__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./new-product */ "./src/app/content/product-creator/new-product.ts");
+/* harmony import */ var _services_save_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/save.service */ "./src/app/content/services/save.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -492,18 +497,27 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var ProductCreatorComponent = /** @class */ (function () {
-    function ProductCreatorComponent() {
+    function ProductCreatorComponent(Save) {
+        this.Save = Save;
+        this.newProduct = new _new_product__WEBPACK_IMPORTED_MODULE_1__["NewProduct"]('', 0, '');
+        this.resultMsg = "";
     }
-    ProductCreatorComponent.prototype.ngOnInit = function () {
+    ProductCreatorComponent.prototype.ngOnInit = function () { };
+    ProductCreatorComponent.prototype.submitProduct = function () {
+        var _this = this;
+        this.Save.saveProduct(this.newProduct)
+            .subscribe(function (data) { return _this.resultMsg = data; }, function (error) { return _this.resultMsg = error; });
     };
     ProductCreatorComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-product-creator',
             template: __webpack_require__(/*! ./product-creator.component.html */ "./src/app/content/product-creator/product-creator.component.html"),
-            styles: [__webpack_require__(/*! ./product-creator.component.css */ "./src/app/content/product-creator/product-creator.component.css")]
+            styles: [__webpack_require__(/*! ./product-creator.component.css */ "./src/app/content/product-creator/product-creator.component.css"), __webpack_require__(/*! ../../app.component.css */ "./src/app/app.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_services_save_service__WEBPACK_IMPORTED_MODULE_2__["SaveService"]])
     ], ProductCreatorComponent);
     return ProductCreatorComponent;
 }());
@@ -519,7 +533,7 @@ var ProductCreatorComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".products{\r\n  display: flex;\r\n}\r\n\r\n.product{\r\n  text-align: center;\r\n  margin: 10px;\r\n  width: 150px;\r\n}\r\n\r\n/*shadow box instead of border*/\r\n\r\n.product:hover{\r\n  box-shadow: 0 2px 0 antiquewhite, 0 2px 0 antiquewhite inset;\r\n}\r\n\r\n.content{\r\n  text-align: center;\r\n}\r\n"
 
 /***/ }),
 
@@ -530,7 +544,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  products works!\r\n</p>\r\n"
+module.exports = "<div class=\"products\">\r\n  <div class=\"product\" *ngFor=\"let product of products\" >\r\n    <div>{{product.product_id}}</div>\r\n    <div>{{product.price}}</div>\r\n    <div>{{product.title}}</div>\r\n    <div>{{product.description}}</div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -545,7 +559,7 @@ module.exports = "<p>\r\n  products works!\r\n</p>\r\n"
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductsComponent", function() { return ProductsComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _display_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../display.service */ "./src/app/content/display.service.ts");
+/* harmony import */ var _services_display_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/display.service */ "./src/app/content/services/display.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -570,11 +584,105 @@ var ProductsComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-products',
             template: __webpack_require__(/*! ./products.component.html */ "./src/app/content/products/products.component.html"),
-            styles: [__webpack_require__(/*! ./products.component.css */ "./src/app/content/products/products.component.css")]
+            styles: [__webpack_require__(/*! ./products.component.css */ "./src/app/content/products/products.component.css"), __webpack_require__(/*! ../../app.component.css */ "./src/app/app.component.css")]
         }),
-        __metadata("design:paramtypes", [_display_service__WEBPACK_IMPORTED_MODULE_1__["DisplayService"]])
+        __metadata("design:paramtypes", [_services_display_service__WEBPACK_IMPORTED_MODULE_1__["DisplayService"]])
     ], ProductsComponent);
     return ProductsComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/content/services/display.service.ts":
+/*!*****************************************************!*\
+  !*** ./src/app/content/services/display.service.ts ***!
+  \*****************************************************/
+/*! exports provided: DisplayService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DisplayService", function() { return DisplayService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var DisplayService = /** @class */ (function () {
+    function DisplayService(Http) {
+        this.Http = Http;
+        this.JavaServer = "http://localhost:8001";
+    }
+    DisplayService.prototype.displayProducts = function () {
+        return this.Http.get(this.JavaServer + "/products");
+    };
+    DisplayService.prototype.displayOrders = function () {
+        return this.Http.get(this.JavaServer + "/orders");
+    };
+    DisplayService.prototype.displayOrderDetails = function (orderId) {
+        return this.Http.get(this.JavaServer + "/orders/" + orderId);
+    };
+    DisplayService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], DisplayService);
+    return DisplayService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/content/services/save.service.ts":
+/*!**************************************************!*\
+  !*** ./src/app/content/services/save.service.ts ***!
+  \**************************************************/
+/*! exports provided: SaveService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SaveService", function() { return SaveService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var SaveService = /** @class */ (function () {
+    function SaveService(Http) {
+        this.Http = Http;
+        this.JavaServer = "http://localhost:8001";
+    }
+    SaveService.prototype.saveProduct = function (newProduct) {
+        return this.Http.post(this.JavaServer + "/product_save", newProduct);
+    };
+    SaveService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], SaveService);
+    return SaveService;
 }());
 
 
@@ -588,7 +696,7 @@ var ProductsComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "ul{\r\n  display: flex;\r\n}\r\n\r\n\r\n.navigation_bar{\r\n  text-align: center;\r\n}\r\n\r\n\r\nli:hover{\r\n  box-shadow: 0 2px 0 antiquewhite, 0 2px 0 antiquewhite inset;\r\n}\r\n\r\n\r\nul, ul li {\r\n  list-style: none;\r\n  padding:0;\r\n  margin: 10px;\r\n}\r\n\r\n\r\na {\r\n  text-decoration: none;\r\n  outline: none;\r\n}\r\n\r\n\r\na:visited {\r\n  color: whitesmoke;\r\n  outline: none;\r\n}\r\n\r\n\r\na:link {\r\n  color: whitesmoke;\r\n  background-color: rgba(0, 0, 0, 0);\r\n}\r\n"
+module.exports = "ul{\r\n  display: flex;\r\n}\r\n\r\n.navigation_bar{\r\n  text-align: center;\r\n}\r\n\r\n/*shadow box instead of border*/\r\n\r\nli:hover{\r\n  box-shadow: 0 2px 0 antiquewhite, 0 2px 0 antiquewhite inset;\r\n}\r\n\r\nul, ul li {\r\n  list-style: none;\r\n  padding:0;\r\n  margin: 10px;\r\n}\r\n\r\na {\r\n  text-decoration: none;\r\n  outline: none;\r\n}\r\n\r\na:visited {\r\n  color: whitesmoke;\r\n  outline: none;\r\n}\r\n\r\na:link {\r\n  color: whitesmoke;\r\n  background-color: rgba(0, 0, 0, 0);\r\n}\r\n\r\n.content{\r\n  text-align: center;\r\n}\r\n"
 
 /***/ }),
 

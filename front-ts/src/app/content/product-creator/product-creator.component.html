@@ -1,9 +1,9 @@
-<form #registerForm="ngForm" (ngSubmit)="submitReg()">
-  {{userReg | json}}
-  <div>Your Nickname:<br/><input class="Login_forms" type="text" name="nickname" [(ngModel)]="userReg.nick" /></div>
-  <div>Email:<br/> <input class="Login_forms" type="text" name="email" [(ngModel)]="userReg.email" /></div>
-  <div>Name:<br/> <input class="Login_forms" type="text" name="name" [(ngModel)]="userReg.name" /></div>
-  <div>Surname:<br/> <input class="Login_forms" type="text" name="surname" [(ngModel)]="userReg.surname" /> <br /></div>
-  <div>Password:<br/> <input class="Login_forms" type="password" name="pw" [(ngModel)]="userReg.pw" /> <br /></div>
+<form #registerForm="ngForm" (ngSubmit)="submitProduct()">
+  {{newProduct | json}}
+  <div>Product title:<br/><input class="Login_forms" type="text" name="title" [(ngModel)]="newProduct.title" /></div>
+  <div>Price:<br/> <input class="Login_forms" type="number" name="price" [(ngModel)]="newProduct.price" /></div>
+  <div>Description:<br/> <textarea class="Login_forms" type="text" name="description" [(ngModel)]="newProduct.description"></textarea></div>
   <button id="registerButton" type="submit">Push it already</button>
 </form>
+<br/><br/>
+<div>{{resultMsg}}</div>

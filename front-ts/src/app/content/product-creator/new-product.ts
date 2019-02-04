@@ -1,7 +1,7 @@
 export class NewProduct {
   constructor (
-    title: string,
-    price: number,
-    description: string
+    public title: string,
+    public price: number,
+    public description: string
   ) {}
 }
