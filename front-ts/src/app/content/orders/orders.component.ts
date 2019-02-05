@@ -14,6 +14,7 @@ import {SaveService} from "../services/save.service";
 export class OrdersComponent implements OnInit {
 
   public orderList = [];
+  public email = "";
   constructor(
     private Display :DisplayService,
     private Save :SaveService,
@@ -28,5 +29,8 @@ export class OrdersComponent implements OnInit {
     this.ReRoute.navigate(["/orders", order.order_id]);
   }
 
+  createOrder(){
+    this.Save.createOrder(this.email);
+  }
 
 }
