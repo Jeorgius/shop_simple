@@ -6,7 +6,7 @@
     <div>{{product.description}}</div>
     <br/><br/>
     <div>Quantity
-      <input type="number" [(ngModel)]="quantity" >
+      <input type="number" (ngModel)="quantity" >
       <input type="button" (click)="addToOrder(product.product_id,quantity)">
     </div>
   </div>

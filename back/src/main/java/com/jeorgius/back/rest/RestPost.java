@@ -17,22 +17,22 @@ public class RestPost {
         this.db = db;
     }
 
-    @PostMapping
+    @PostMapping("/create_product")
     public String createProduct(@RequestBody Product product){
         db.saveNewProduct(product);
         return "Success";
     }
 
-    @PostMapping
+    @PostMapping("/add_to_cart")
     public String addToCart(@RequestParam("product_id") String product_id,
                             @RequestParam("qty") String qty){
         db.addToCart(product_id,qty);
         return "Success";
     }
 
-    @PostMapping
+    @PostMapping("/create_order")
     public String createOrder(){
-        
+        db.createOrder();
         return "Success";
     }
 }

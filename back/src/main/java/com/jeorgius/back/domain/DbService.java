@@ -8,7 +8,10 @@ import com.jeorgius.back.domain.repos.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Service
 public class DbService {
@@ -34,7 +37,7 @@ public class DbService {
     }
 
     public void addToCart(String product_id, String qty){
-        Order order = orderRepo.findLastOrder();
+        Order order = orderRepo.findOrders().stream().limit(1).collect(Collectors.toList()).get(0);
         if(order==null) order = new Order();
 
         Product product = productRepo.findOneProduct(product_id);
@@ -52,5 +55,9 @@ public class DbService {
         }
 
         orderRepo.save(order);
+    }
+
+    public void createOrder(){
+        orderRepo.save(new Order());
     }
 }

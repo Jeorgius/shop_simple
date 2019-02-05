@@ -371,7 +371,7 @@ module.exports = ".orders{\r\n  display: flex;\r\n}\r\n\r\n.order{\r\n  text-ali
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"orders\">\r\n  <div class=\"order\" *ngFor=\"let order of orderList\" >\r\n    <div>{{order.order_id}}</div>\r\n    <div>{{order.email}}</div>\r\n    <div>{{order.date_add}}</div>\r\n    <div>{{order.order_total_sum}}</div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div>Quantity\r\n  <input type=\"text\" [(ngModel)]=\"email\" >\r\n  <input type=\"button\" (click)=\"createOrder()\">\r\n</div>\r\n<div class=\"orders\">\r\n  <div class=\"order\"  *ngFor=\"let order of orderList\" (click)=\"goToOrder(order.order_id)\">\r\n    <div>{{order.order_id}}</div>\r\n    <div>{{order.email}}</div>\r\n    <div>{{order.date_add}}</div>\r\n    <div>{{order.order_total_sum}}</div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -388,6 +388,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services_display_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/display.service */ "./src/app/content/services/display.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_save_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/save.service */ "./src/app/content/services/save.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -400,11 +401,14 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var OrdersComponent = /** @class */ (function () {
-    function OrdersComponent(Display, ReRoute) {
+    function OrdersComponent(Display, Save, ReRoute) {
         this.Display = Display;
+        this.Save = Save;
         this.ReRoute = ReRoute;
         this.orderList = [];
+        this.email = "";
     }
     OrdersComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -413,6 +417,9 @@ var OrdersComponent = /** @class */ (function () {
     OrdersComponent.prototype.goToOrder = function (order) {
         this.ReRoute.navigate(["/orders", order.order_id]);
     };
+    OrdersComponent.prototype.createOrder = function () {
+        this.Save.createOrder(this.email);
+    };
     OrdersComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-orders',
@@ -420,6 +427,7 @@ var OrdersComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./orders.component.css */ "./src/app/content/orders/orders.component.css"), __webpack_require__(/*! ../../app.component.css */ "./src/app/app.component.css")]
         }),
         __metadata("design:paramtypes", [_services_display_service__WEBPACK_IMPORTED_MODULE_1__["DisplayService"],
+            _services_save_service__WEBPACK_IMPORTED_MODULE_3__["SaveService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], OrdersComponent);
     return OrdersComponent;
@@ -544,7 +552,7 @@ module.exports = ".products{\r\n  display: flex;\r\n}\r\n\r\n.product{\r\n  text
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"products\">\r\n  <div class=\"product\" *ngFor=\"let product of products\" >\r\n    <div>{{product.product_id}}</div>\r\n    <div>{{product.price}}</div>\r\n    <div>{{product.title}}</div>\r\n    <div>{{product.description}}</div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"products\">\r\n  <div class=\"product\" *ngFor=\"let product of products\" >\r\n    <div><b>ID: </b>{{product.product_id}}</div>\r\n    <div>${{product.price}}</div>\r\n    <div><b>{{product.title}}</b></div>\r\n    <div>{{product.description}}</div>\r\n    <br/><br/>\r\n    <div>Quantity\r\n      <input type=\"number\" (ngModel)=\"quantity\" >\r\n      <input type=\"button\" (click)=\"addToOrder(product.product_id,quantity)\">\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -560,6 +568,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductsComponent", function() { return ProductsComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services_display_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/display.service */ "./src/app/content/services/display.service.ts");
+/* harmony import */ var _services_save_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/save.service */ "./src/app/content/services/save.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -571,14 +580,21 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var ProductsComponent = /** @class */ (function () {
-    function ProductsComponent(Display) {
+    function ProductsComponent(Display, Add) {
         this.Display = Display;
+        this.Add = Add;
         this.products = [];
+        this.quantity = 0;
     }
     ProductsComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.Display.displayProducts().subscribe(function (data) { return _this.products = data; });
+    };
+    ProductsComponent.prototype.addToOrder = function (product_id, qty) {
+        this.Add.addToLastOrder(product_id, qty);
+        alert("Product " + product_id + " added to Order");
     };
     ProductsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -586,7 +602,8 @@ var ProductsComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./products.component.html */ "./src/app/content/products/products.component.html"),
             styles: [__webpack_require__(/*! ./products.component.css */ "./src/app/content/products/products.component.css"), __webpack_require__(/*! ../../app.component.css */ "./src/app/app.component.css")]
         }),
-        __metadata("design:paramtypes", [_services_display_service__WEBPACK_IMPORTED_MODULE_1__["DisplayService"]])
+        __metadata("design:paramtypes", [_services_display_service__WEBPACK_IMPORTED_MODULE_1__["DisplayService"],
+            _services_save_service__WEBPACK_IMPORTED_MODULE_2__["SaveService"]])
     ], ProductsComponent);
     return ProductsComponent;
 }());
@@ -674,7 +691,13 @@ var SaveService = /** @class */ (function () {
         this.JavaServer = "http://localhost:8001";
     }
     SaveService.prototype.saveProduct = function (newProduct) {
-        return this.Http.post(this.JavaServer + "/product_save", newProduct);
+        return this.Http.post(this.JavaServer + "/create_product", newProduct);
+    };
+    SaveService.prototype.addToLastOrder = function (product_id, qty) {
+        return this.Http.post(this.JavaServer + "/add_to_cart", [product_id, qty]);
+    };
+    SaveService.prototype.createOrder = function (email) {
+        return this.Http.post(this.JavaServer + "/create_order", [email]);
     };
     SaveService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({

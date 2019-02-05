@@ -14,7 +14,4 @@ public interface OrderRepo extends CrudRepository<Order,Long> {
     //Query instead of method building, since the latter does not support "_" symbol
     @Query("Select o from Order o order by order_id DESC")
     List<Order> findOrders();
-
-    @Query("Select First from Order o order by order_id DESC")
-    Order findLastOrder();
 }
