@@ -13,7 +13,7 @@ import {SaveService} from "../services/save.service";
 export class ProductsComponent implements OnInit {
 
   public products = [];
-  public quantity = 0;
+
   constructor(
     private Display:DisplayService,
     private Add :SaveService

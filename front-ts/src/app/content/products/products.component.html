@@ -5,9 +5,11 @@
     <div><b>{{product.title}}</b></div>
     <div>{{product.description}}</div>
     <br/><br/>
-    <div>Quantity
-      <input type="number" (ngModel)="quantity" >
-      <input type="button" (click)="addToOrder(product.product_id,quantity)">
+    <div>
+      <input type="number" value="0" #qty>
+      <button type="button" (click)="addToOrder(product.product_id,qty.value)">
+        Add to cart
+      </button>
     </div>
   </div>
 </div>

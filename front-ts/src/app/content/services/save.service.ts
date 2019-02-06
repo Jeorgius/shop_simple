@@ -11,14 +11,14 @@ export class SaveService {
   constructor(private Http :HttpClient) {}
 
   saveProduct(newProduct :NewProduct){
-    return this.Http.post<string>(this.JavaServer+"/create_product", newProduct);
+    return this.Http.post<string>(this.JavaServer+"/create/product", newProduct);
   }
 
   addToLastOrder(product_id,qty){
-    return this.Http.post<string>(this.JavaServer+"/add_to_cart", [product_id,qty])
+    return this.Http.post<string>(this.JavaServer+"/add_to_order", [product_id,qty])
   }
 
   createOrder(email){
-    return this.Http.post<string>(this.JavaServer+"/create_order",[email])
+    return this.Http.post<string>(this.JavaServer+"/create/order",[email])
   }
 }
