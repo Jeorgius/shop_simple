@@ -7,7 +7,8 @@ import javax.persistence.*;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long product_id;
+    @Column(name="product_id")
+    private long id;
     private long price;
     private String title;
     private String description;
@@ -21,12 +22,12 @@ public class Product {
         this.price = price;
     }
 
-    public long getProduct_id() {
-        return product_id;
+    public long getId() {
+        return id;
     }
 
-    public void setProduct_id(long product_id) {
-        this.product_id = product_id;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getTitle() {

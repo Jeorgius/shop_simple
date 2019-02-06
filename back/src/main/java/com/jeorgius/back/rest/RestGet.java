@@ -1,6 +1,6 @@
 package com.jeorgius.back.rest;
 
-import com.jeorgius.back.domain.DbService;
+import com.jeorgius.back.domain.services.DbService;
 import com.jeorgius.back.domain.entities.Order;
 import com.jeorgius.back.domain.entities.Product;
 import org.springframework.beans.factory.annotation.Autowired;

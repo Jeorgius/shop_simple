@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NewProduct} from "./new-product";
+import {Product} from "../entities/product";
 import {SaveService} from "../services/save.service";
 
 @Component({
@@ -12,7 +12,7 @@ import {SaveService} from "../services/save.service";
 })
 export class ProductCreatorComponent implements OnInit {
 
-  public newProduct = new NewProduct('',0,'');
+  public newProduct = new Product('',0,'');
   public resultMsg = "";
   constructor(private Save :SaveService) { }
 

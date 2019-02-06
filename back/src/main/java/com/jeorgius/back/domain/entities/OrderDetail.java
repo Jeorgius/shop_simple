@@ -9,16 +9,20 @@ import javax.persistence.*;
 public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long orderdetail_id;
+    @Column(name="orderdetail_id")
+    private long id;
 
     private long price;
     private int qty; //quantity
-    private long total_price;
 
-    public OrderDetail(long price, int qty, long total_price, Order order) {
+    @Column(name="total_price")
+    private long total;
+
+    public OrderDetail(){}
+    public OrderDetail(long price, int qty, long total, Order order) {
         this.price = price;
         this.qty = qty;
-        this.total_price = total_price;
+        this.total = total;
         this.order = order;
     }
 
@@ -27,12 +31,12 @@ public class OrderDetail {
     @ManyToOne(fetch = FetchType.EAGER)
     private Order order;
 
-    public long getOrderdetail_id() {
-        return orderdetail_id;
+    public long getId() {
+        return id;
     }
 
-    public void setOrderdetail_id(long orderdetail_id) {
-        this.orderdetail_id = orderdetail_id;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public long getPrice() {
@@ -51,12 +55,12 @@ public class OrderDetail {
         this.qty = qty;
     }
 
-    public long getTotal_price() {
-        return total_price;
+    public long getTotal() {
+        return total;
     }
 
-    public void setTotal_price(long total_price) {
-        this.total_price = total_price;
+    public void setTotal(long total) {
+        this.total = total;
     }
 
     public Order getOrder() {
