@@ -9,21 +9,22 @@ import org.springframework.stereotype.Service;
 @Service
 public class ValidationService {
 
-    public String productCreation(Product product) throws CreationException {
+    private String productCreation(Product product) throws CreationException {
         if(product.getDescription()==null) throw new CreationException("description is not entered");
         if(product.getPrice()<=0) throw new CreationException("price should be greater than 0");
         if(product.getTitle()==null || product.getTitle().equals("") || product.getTitle().equals(" ")) throw new CreationException("title is not entered");
         return "Success";
     }
 
-    public String orderCreation(Order order) throws CreationException {
-        if(order.getEmail()==null || order.equals(" ") || order.equals("")) throw new CreationException("email is empty");
+    private String orderCreation(Order order) throws CreationException {
+        if(order.getEmail()==null || order.getEmail().equals(" ") || order.getEmail().equals(""))
+            throw new CreationException("email is empty");
         if(!order.getEmail().contains("@")) throw new CreationException("email has no '@' sign");
         if(!order.getEmail().split("@")[1].contains(".")) throw new CreationException("email domain name should contain '.', for instance '.com', '.net' etc");
         return "Success";
     }
 
-    public String orderDetailCreation(OrderDetail orderDetail) throws CreationException {
+    private String orderDetailCreation(OrderDetail orderDetail) throws CreationException {
         if(orderDetail.getQty()<=0) throw new CreationException("ordered quantity should be more than 0");
         return "Success";
     }

@@ -1,8 +1,8 @@
 package com.jeorgius.back.rest;
 
+import com.jeorgius.back.domain.entities.Order;
 import com.jeorgius.back.domain.services.DbService;
 import com.jeorgius.back.domain.entities.Product;
-import com.jeorgius.back.domain.services.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,22 +11,16 @@ import org.springframework.web.bind.annotation.*;
 public class RestPost {
 
     private DbService db;
-    private ValidationService validation;
     public RestPost(){}
 
     @Autowired
-    public RestPost(DbService db, ValidationService validation) {
+    public RestPost(DbService db) {
         this.db = db;
-        this.validation = validation;
     }
 
     @PostMapping("/create/product")
     public String createProduct(@RequestBody Product product){
-        String msg = validation.validateCreation(product);
-        if(!msg.contains("Success")) return msg;
-
-        db.saveNewProduct(product);
-        return "Success";
+        return db.saveNewProduct(product);
     }
 
     @PostMapping("/add_to_cart")
@@ -37,8 +31,7 @@ public class RestPost {
     }
 
     @PostMapping("/create/order")
-    public String createOrder(){
-        db.createOrder();
-        return "Success";
+    public String createOrder(@RequestBody Order order){
+        return db.createOrder(order);
     }
 }

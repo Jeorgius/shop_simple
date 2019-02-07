@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 public class DbService {
     private OrderRepo orderRepo;
     private ProductRepo productRepo;
+    private ValidationService validation;
 
     @Autowired
     public DbService(OrderRepo orderRepo, ProductRepo productRepo) {
@@ -30,32 +31,38 @@ public class DbService {
         return orderRepo.findOrders();
     }
 
-    public void saveNewProduct(Product product){
-        productRepo.save(product);
+    public String saveNewProduct(Product product){
+        String msg = validation.validateCreation(product);
+        if(!msg.contains("Error")) productRepo.save(product);
+
+        return msg;
     }
 
-    public void addToCart(String product_id, String qty){
-        Order order = orderRepo.findOrders().stream().limit(1).collect(Collectors.toList()).get(0);
-        if(order==null) order = new Order();
+    public String addToCart(String product_id, String qty){
+        Order order = orderRepo.findFirstByOrderByIdDesc();
+        if(order==null) return "Error: create new order";
 
         Product product = productRepo.findOneProduct(product_id);
+        OrderDetail orderDetail = new OrderDetail(
+                product.getPrice(),
+                Integer.parseInt(qty),
+                Long.parseLong(qty)*product.getPrice(),
+                order);
 
         //add orderdetail to database
-        order.getOrderDetailList().add(
-                new OrderDetail(
-                        product.getPrice(),
-                        Integer.parseInt(qty),
-                        Long.parseLong(qty)*product.getPrice(),
-                        order));
+        order.getOrderDetailList().add(orderDetail);
         //recalculate order total price
-        for (OrderDetail orderDetail:order.getOrderDetailList()) {
-            order.setOrder_total_sum(order.getOrder_total_sum()+orderDetail.getTotal_price());
+        for (OrderDetail oD:order.getOrderDetailList()) {
+            order.setSum(order.getSum()+oD.getTotal());
         }
 
         orderRepo.save(order);
+        return "Success";
     }
 
-    public void createOrder(){
-        orderRepo.save(new Order());
+    public String createOrder(Order order){
+        String msg = validation.validateCreation(order);
+        if(!msg.contains("Error")) orderRepo.save(order);
+        return msg;
     }
 }
