@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {DisplayService} from "../services/display.service";
+import {DisplayService} from "../services/display/display.service";
 import {Router} from "@angular/router";
-import {SaveService} from "../services/save.service";
+import {SaveService} from "../services/save/save.service";
 
 @Component({
   selector: 'app-orders',
@@ -14,6 +14,7 @@ import {SaveService} from "../services/save.service";
 export class OrdersComponent implements OnInit {
 
   public orderList = [];
+  public msg: string;
 
   constructor(
     private Display :DisplayService,
@@ -25,12 +26,15 @@ export class OrdersComponent implements OnInit {
     this.Display.displayOrders().subscribe(data=>this.orderList = data);
   }
 
-  goToOrder(order){
-    this.ReRoute.navigate(["/orders", order.order_id]);
+  goToOrder(order_id){
+    this.ReRoute.navigate(["/orders", order_id]);
   }
 
   createOrder(email){
-    this.Save.createOrder(email);
+    this.Save.createOrder(email).subscribe(
+      data=>this.msg=data,
+      error => this.msg=error
+    );
   }
 
 }

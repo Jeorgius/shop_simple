@@ -1,8 +1,9 @@
 export class Order{
+  //fields both in constructor and public fields in class
   constructor(
     public email: string,
-    public date: Date,
-    public sum: number
+    public sum: number,
+    public date: Date
   ){}
 
 }

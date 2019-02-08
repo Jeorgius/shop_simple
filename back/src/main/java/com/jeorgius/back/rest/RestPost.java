@@ -6,6 +6,11 @@ import com.jeorgius.back.domain.entities.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Map;
+
 @CrossOrigin
 @RestController
 public class RestPost {
@@ -24,10 +29,11 @@ public class RestPost {
     }
 
     @PostMapping("/add_to_cart")
-    public String addToCart(@RequestParam("product_id") String product_id,
-                            @RequestParam("qty") String qty){
-        db.addToCart(product_id,qty);
-        return "Success";
+    public String addToCart(@RequestBody Map<String,Object> form) throws ParseException {
+        return db.addToCart(
+                form.get("product_id").toString(),
+                form.get("qty").toString(),
+                form.get("date").toString());
     }
 
     @PostMapping("/create/order")

@@ -30,6 +30,14 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderDetail> orderDetailList;
 
+    public Order(){}
+
+    public Order(String email, long sum, Date date) {
+        this.email = email;
+        this.sum = sum;
+        this.date = date;
+    }
+
     public long getId() {
         return id;
     }

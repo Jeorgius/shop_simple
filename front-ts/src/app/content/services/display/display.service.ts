@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {iOrderList,iOrderDetail,iProductList} from "./iDisplayContents";
+import {Order} from "../../entities/order";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,6 @@ export class DisplayService {
     return this.Http.get<iOrderList[]>(this.JavaServer+"/orders")
   }
   displayOrderDetails(orderId){
-    return this.Http.get<iOrderDetail[]>(this.JavaServer+"/orders/"+orderId);
+    return this.Http.get<iOrderList>(this.JavaServer+"/orders/"+orderId);
   }
 }

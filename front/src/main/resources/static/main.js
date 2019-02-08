@@ -216,6 +216,52 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/content/entities/order.ts":
+/*!*******************************************!*\
+  !*** ./src/app/content/entities/order.ts ***!
+  \*******************************************/
+/*! exports provided: Order */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Order", function() { return Order; });
+var Order = /** @class */ (function () {
+    function Order(email, date, sum) {
+        this.email = email;
+        this.date = date;
+        this.sum = sum;
+    }
+    return Order;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/content/entities/product.ts":
+/*!*********************************************!*\
+  !*** ./src/app/content/entities/product.ts ***!
+  \*********************************************/
+/*! exports provided: Product */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Product", function() { return Product; });
+var Product = /** @class */ (function () {
+    function Product(title, price, description) {
+        this.title = title;
+        this.price = price;
+        this.description = description;
+    }
+    return Product;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/content/main/main.component.css":
 /*!*************************************************!*\
   !*** ./src/app/content/main/main.component.css ***!
@@ -371,7 +417,7 @@ module.exports = ".orders{\r\n  display: flex;\r\n}\r\n\r\n.order{\r\n  text-ali
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>Quantity\r\n  <input type=\"text\" [(ngModel)]=\"email\" >\r\n  <input type=\"button\" (click)=\"createOrder()\">\r\n</div>\r\n<div class=\"orders\">\r\n  <div class=\"order\"  *ngFor=\"let order of orderList\" (click)=\"goToOrder(order.order_id)\">\r\n    <div>{{order.order_id}}</div>\r\n    <div>{{order.email}}</div>\r\n    <div>{{order.date_add}}</div>\r\n    <div>{{order.order_total_sum}}</div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div>New Order: enter email\r\n  <input type=\"text\" #orderInput >\r\n  <input type=\"button\" (click)=\"createOrder(orderInput.value)\">\r\n</div>\r\n<div class=\"orders\">\r\n  <div class=\"order\"  *ngFor=\"let order of orderList\" (click)=\"goToOrder(order.order_id)\">\r\n    <div>{{order.order_id}}</div>\r\n    <div>{{order.email}}</div>\r\n    <div>{{order.date_add}}</div>\r\n    <div>{{order.order_total_sum}}</div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -408,7 +454,6 @@ var OrdersComponent = /** @class */ (function () {
         this.Save = Save;
         this.ReRoute = ReRoute;
         this.orderList = [];
-        this.email = "";
     }
     OrdersComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -417,8 +462,8 @@ var OrdersComponent = /** @class */ (function () {
     OrdersComponent.prototype.goToOrder = function (order) {
         this.ReRoute.navigate(["/orders", order.order_id]);
     };
-    OrdersComponent.prototype.createOrder = function () {
-        this.Save.createOrder(this.email);
+    OrdersComponent.prototype.createOrder = function (email) {
+        this.Save.createOrder(email);
     };
     OrdersComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -431,29 +476,6 @@ var OrdersComponent = /** @class */ (function () {
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], OrdersComponent);
     return OrdersComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/content/product-creator/new-product.ts":
-/*!********************************************************!*\
-  !*** ./src/app/content/product-creator/new-product.ts ***!
-  \********************************************************/
-/*! exports provided: NewProduct */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NewProduct", function() { return NewProduct; });
-var NewProduct = /** @class */ (function () {
-    function NewProduct(title, price, description) {
-        this.title = title;
-        this.price = price;
-        this.description = description;
-    }
-    return NewProduct;
 }());
 
 
@@ -493,7 +515,7 @@ module.exports = "<form #registerForm=\"ngForm\" (ngSubmit)=\"submitProduct()\">
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductCreatorComponent", function() { return ProductCreatorComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _new_product__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./new-product */ "./src/app/content/product-creator/new-product.ts");
+/* harmony import */ var _entities_product__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../entities/product */ "./src/app/content/entities/product.ts");
 /* harmony import */ var _services_save_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/save.service */ "./src/app/content/services/save.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -510,14 +532,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var ProductCreatorComponent = /** @class */ (function () {
     function ProductCreatorComponent(Save) {
         this.Save = Save;
-        this.newProduct = new _new_product__WEBPACK_IMPORTED_MODULE_1__["NewProduct"]('', 0, '');
+        this.newProduct = new _entities_product__WEBPACK_IMPORTED_MODULE_1__["Product"]('', 0, '');
         this.resultMsg = "";
     }
     ProductCreatorComponent.prototype.ngOnInit = function () { };
     ProductCreatorComponent.prototype.submitProduct = function () {
-        var _this = this;
-        this.Save.saveProduct(this.newProduct)
-            .subscribe(function (data) { return _this.resultMsg = data; }, function (error) { return _this.resultMsg = error; });
+        this.Save.saveProduct(this.newProduct);
     };
     ProductCreatorComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -552,7 +572,7 @@ module.exports = ".products{\r\n  display: flex;\r\n}\r\n\r\n.product{\r\n  text
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"products\">\r\n  <div class=\"product\" *ngFor=\"let product of products\" >\r\n    <div><b>ID: </b>{{product.product_id}}</div>\r\n    <div>${{product.price}}</div>\r\n    <div><b>{{product.title}}</b></div>\r\n    <div>{{product.description}}</div>\r\n    <br/><br/>\r\n    <div>Quantity\r\n      <input type=\"number\" (ngModel)=\"quantity\" >\r\n      <input type=\"button\" (click)=\"addToOrder(product.product_id,quantity)\">\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"products\">\r\n  <div class=\"product\" *ngFor=\"let product of products\" >\r\n    <div><b>ID: </b>{{product.product_id}}</div>\r\n    <div>${{product.price}}</div>\r\n    <div><b>{{product.title}}</b></div>\r\n    <div>{{product.description}}</div>\r\n    <br/><br/>\r\n    <div>\r\n      <input type=\"number\" value=\"0\" #qty>\r\n      <button type=\"button\" (click)=\"addToOrder(product.product_id,qty.value)\">\r\n        Add to cart\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -586,7 +606,6 @@ var ProductsComponent = /** @class */ (function () {
         this.Display = Display;
         this.Add = Add;
         this.products = [];
-        this.quantity = 0;
     }
     ProductsComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -674,6 +693,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SaveService", function() { return SaveService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _entities_order__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../entities/order */ "./src/app/content/entities/order.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -685,19 +705,21 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
+//Module to generate post-queries with creating entities on server-side
 var SaveService = /** @class */ (function () {
     function SaveService(Http) {
         this.Http = Http;
         this.JavaServer = "http://localhost:8001";
     }
     SaveService.prototype.saveProduct = function (newProduct) {
-        return this.Http.post(this.JavaServer + "/create_product", newProduct);
+        return this.Http.post(this.JavaServer + "/create/product", newProduct);
     };
     SaveService.prototype.addToLastOrder = function (product_id, qty) {
-        return this.Http.post(this.JavaServer + "/add_to_cart", [product_id, qty]);
+        return this.Http.post(this.JavaServer + "/add_to_order", { product_id: product_id, qty: qty, date: new Date() });
     };
     SaveService.prototype.createOrder = function (email) {
-        return this.Http.post(this.JavaServer + "/create_order", [email]);
+        return this.Http.post(this.JavaServer + "/create/order", new _entities_order__WEBPACK_IMPORTED_MODULE_2__["Order"](email, new Date(), 0));
     };
     SaveService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({

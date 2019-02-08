@@ -8,6 +8,7 @@ import com.jeorgius.back.domain.repos.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,11 +17,14 @@ public class DbService {
     private OrderRepo orderRepo;
     private ProductRepo productRepo;
     private ValidationService validation;
+    private ParseService parseService;
 
     @Autowired
-    public DbService(OrderRepo orderRepo, ProductRepo productRepo) {
+    public DbService(OrderRepo orderRepo, ProductRepo productRepo, ValidationService validation, ParseService parseService) {
         this.orderRepo = orderRepo;
         this.productRepo = productRepo;
+        this.validation = validation;
+        this.parseService = parseService;
     }
 
     public List<Product> getProducts(){
@@ -28,7 +32,11 @@ public class DbService {
     }
 
     public List<Order> getOrders(){
-        return orderRepo.findOrders();
+        return orderRepo.findAllByOrderByIdDesc();
+    }
+
+    public Order getSelectedOrder(long id){
+        return orderRepo.findOrderById(id);
     }
 
     public String saveNewProduct(Product product){
@@ -38,19 +46,20 @@ public class DbService {
         return msg;
     }
 
-    public String addToCart(String product_id, String qty){
+    public String addToCart(String product_id, String qty, String date){
         Order order = orderRepo.findFirstByOrderByIdDesc();
-        if(order==null) return "Error: create new order";
+        if(order==null) order = new Order("Enter",0, parseService.parseJsDate(date));
 
-        Product product = productRepo.findOneProduct(product_id);
+        Product product = productRepo.findOneProduct(Long.parseLong(product_id));
         OrderDetail orderDetail = new OrderDetail(
                 product.getPrice(),
                 Integer.parseInt(qty),
                 Long.parseLong(qty)*product.getPrice(),
                 order);
 
-        //add orderdetail to database
+        //add orderdetail to order entity
         order.getOrderDetailList().add(orderDetail);
+
         //recalculate order total price
         for (OrderDetail oD:order.getOrderDetailList()) {
             order.setSum(order.getSum()+oD.getTotal());

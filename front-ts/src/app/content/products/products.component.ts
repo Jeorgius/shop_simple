@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {DisplayService} from "../services/display.service";
-import {SaveService} from "../services/save.service";
+import {DisplayService} from "../services/display/display.service";
+import {SaveService} from "../services/save/save.service";
 
 @Component({
   selector: 'app-products',
@@ -13,6 +13,7 @@ import {SaveService} from "../services/save.service";
 export class ProductsComponent implements OnInit {
 
   public products = [];
+  public msg: string;
 
   constructor(
     private Display:DisplayService,
@@ -24,7 +25,9 @@ export class ProductsComponent implements OnInit {
   }
 
   addToOrder(product_id,qty){
-    this.Add.addToLastOrder(product_id,qty);
-    alert("Product " + product_id + " added to Order");
+    this.Add.addToLastOrder(product_id,qty).subscribe(
+      data=>this.msg=data,
+      error=>this.msg=error
+    )
   }
 }

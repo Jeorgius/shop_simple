@@ -11,11 +11,10 @@ import java.util.List;
 @Transactional
 public interface OrderRepo extends CrudRepository<Order,Long> {
 
-
-    //Query instead of method building, since the latter does not support "_" symbol
-    @Query("Select o from Order o order by order_id DESC")
-    List<Order> findOrders();
-
     List<Order> findAllByOrderByIdDesc();
+
+    //find last order
     Order findFirstByOrderByIdDesc();
+
+    Order findOrderById(long id);
 }

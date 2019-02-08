@@ -3,6 +3,7 @@ package com.jeorgius.back.domain.repos;
 import com.jeorgius.back.domain.entities.Product;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -13,5 +14,5 @@ public interface ProductRepo extends CrudRepository<Product,Long> {
     List<Product> findProducts();
 
     @Query("Select p from Product p where product_id = :product_id")
-    Product findOneProduct(String product_id);
+    Product findOneProduct(@Param("product_id") long product_id);
 }

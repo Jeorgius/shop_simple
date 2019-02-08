@@ -1,13 +1,13 @@
 <div class="products">
   <div class="product" *ngFor="let product of products" >
-    <div><b>ID: </b>{{product.product_id}}</div>
+    <div><b>ID: </b>{{product.id}}</div>
     <div>${{product.price}}</div>
     <div><b>{{product.title}}</b></div>
     <div>{{product.description}}</div>
     <br/><br/>
     <div>
       <input type="number" value="0" #qty>
-      <button type="button" (click)="addToOrder(product.product_id,qty.value)">
+      <button type="button" (click)="addToOrder(product.id,qty.value)">
         Add to cart
       </button>
     </div>

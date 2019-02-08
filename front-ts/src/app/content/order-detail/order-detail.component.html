@@ -1,3 +1,14 @@
-<p>
-  order-detail works!
-</p>
+<div class="orders">
+  <div class="order">
+    <div><b>#{{order.id}}</b></div>
+    <div>{{order.email}}</div>
+    <div>Created on {{order.date}}</div>
+    <div><b>Total:</b> {{order.sum}}</div>
+    <div class="order"  *ngFor="let oD of order.orderDetailList">
+      <div><b>#{{oD.id}}</b></div>
+      <div>Reserved price: {{oD.price}}</div>
+      <div>Quantity: {{oD.qty}}</div>
+      <div><b>Total:</b> {{oD.total}}</div>
+    </div>
+  </div>
+</div>

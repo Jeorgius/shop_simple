@@ -1,23 +1,26 @@
 // Interfaces to display content are all located here, so the files with them won't multiply very quickly
 
+import {Order} from "../../entities/order";
+
 export interface iProductList {
-  product_id: number,
+  id: number,
   price: number,
   title: string,
   description: string
 }
 
 export interface iOrderList{
-  order_id: number,
+  id: number,
   email: string,
-  date_add: string,
-  OrderDetailList: [iOrderDetail],
-  order_total_sum: number
+  date: string,
+  orderDetailList: [iOrderDetail],
+  sum: number
 }
 
 export interface iOrderDetail {
-  orderdetail_id: number,
-  price_added: number,
+  id: number,
+  price: number,
   qty: number,
-  price_total: number
+  total: number,
+  order: Order
 }

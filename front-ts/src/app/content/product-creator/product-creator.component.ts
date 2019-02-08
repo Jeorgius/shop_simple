@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Product} from "../entities/product";
-import {SaveService} from "../services/save.service";
+import {SaveService} from "../services/save/save.service";
 
 @Component({
   selector: 'app-product-creator',
@@ -20,7 +20,8 @@ export class ProductCreatorComponent implements OnInit {
 
   submitProduct(){
     this.Save.saveProduct(this.newProduct)
-      .subscribe(data => this.resultMsg = data,
-                error => this.resultMsg = error);
+      .subscribe(
+        data => this.resultMsg=data,
+      error => this.resultMsg=error);
   }
 }
