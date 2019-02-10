@@ -1,6 +1,6 @@
-<div>New Order: enter email
-  <input type="text" #orderInput >
-  <input type="button" (click)="createOrder(orderInput.value)">
+<div>Email:
+  <input type="text" class="Input_forms" #orderInput >
+  <button type="submit" (click)="createOrder(orderInput.value)">Create order</button>
 </div>
 <div class="orders">
   <div class="order"  *ngFor="let order of orderList" (click)="goToOrder(order.id)">

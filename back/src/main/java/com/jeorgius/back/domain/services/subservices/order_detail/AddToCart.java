@@ -42,7 +42,7 @@ public class AddToCart implements OrderDetailAction {
     }
 
     private OrderDetail getOrderDetail(Order order, long product_id, long qty){
-        Product product = repos.productRepo.findOneProduct(/*Long.parseLong*/(product_id));
+        Product product = repos.productRepo.findOneProduct((product_id));
 
         //Possible OrderDetail that has the same product (id and price first of all)
         List<OrderDetail> orderDetails = order.getOrderDetailList()
@@ -58,16 +58,16 @@ public class AddToCart implements OrderDetailAction {
         //else - recalculate qty and total
         if(orderDetails.size()==0)
             return new OrderDetail(
-                    product.getPrice(), /*Integer.parseInt*/(int)qty,
-                    /*Long.parseLong*/(qty)*product.getPrice(),
+                    product.getPrice(), (int) qty,
+                    (qty)*product.getPrice(),
                     product, order
             );
         else {
             OrderDetail orderDetail = orderDetails.get(0);
             //old qty + new qty
-            orderDetails.get(0).setQty(orderDetail.getQty()+/*Integer.parseInt*/(int)qty);
+            orderDetails.get(0).setQty(orderDetail.getQty()+(int)qty);
             //old total + new(price*qty)
-            orderDetails.get(0).setTotal(orderDetail.getTotal()+/*Long.parseLong*/(qty)*product.getPrice());
+            orderDetails.get(0).setTotal(orderDetail.getTotal()+qty*product.getPrice());
             return orderDetail;
         }
 

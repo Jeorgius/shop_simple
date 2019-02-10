@@ -1,9 +1,8 @@
 <form #registerForm="ngForm" (ngSubmit)="submitProduct()">
-  {{newProduct | json}}
-  <div>Product title:<br/><input class="Login_forms" type="text" name="title" [(ngModel)]="newProduct.title" /></div>
-  <div>Price:<br/> <input class="Login_forms" type="number" name="price" [(ngModel)]="newProduct.price" /></div>
-  <div>Description:<br/> <textarea class="Login_forms" type="text" name="description" [(ngModel)]="newProduct.description"></textarea></div>
-  <button id="registerButton" type="submit">Push it already</button>
+  <div>Product title:<br/><input class="Input_forms" type="text" name="title" [(ngModel)]="newProduct.title" /></div>
+  <div>Price:<br/> <input class="Input_forms" oninput="validity.valid||(value='');" type="number" min="0" name="price" [(ngModel)]="newProduct.price" /></div>
+  <div>Description:<br/> <textarea class="Input_forms" type="text" name="description" [(ngModel)]="newProduct.description"></textarea></div>
+  <button id="registerButton" type="submit">Add new product</button>
 </form>
 <br/><br/>
 <div>{{resultMsg}}</div>

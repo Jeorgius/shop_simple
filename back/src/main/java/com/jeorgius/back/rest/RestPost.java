@@ -27,7 +27,7 @@ public class RestPost {
     }
 
     @PostMapping("/add_to_cart")
-    public String addToCart(@RequestBody Map<String,Object> form) throws ParseException {
+    public String addToCart(@RequestBody Map<String,Object> form){
         return db.addToCart(form);
     }
 
@@ -37,7 +37,7 @@ public class RestPost {
     }
 
     @PostMapping("/edit/order")
-    public String editOrder(@RequestBody Map<String, Object> form){
-        return "Success";
+    public String editOrder(@RequestBody Order order){
+        return db.editOrder(order);
     }
 }

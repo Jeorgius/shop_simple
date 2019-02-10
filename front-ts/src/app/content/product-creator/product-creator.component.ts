@@ -13,7 +13,7 @@ import {SaveService} from "../services/save/save.service";
 export class ProductCreatorComponent implements OnInit {
 
   public newProduct = new Product('',0,'');
-  public resultMsg = "";
+  public resultMsg :string = "";
   constructor(private Save :SaveService) { }
 
   ngOnInit() {}
@@ -21,7 +21,7 @@ export class ProductCreatorComponent implements OnInit {
   submitProduct(){
     this.Save.saveProduct(this.newProduct)
       .subscribe(
-        data => this.resultMsg=data,
+        data => this.resultMsg=data.toString(),
       error => this.resultMsg=error);
   }
 }

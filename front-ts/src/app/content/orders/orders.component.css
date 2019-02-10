@@ -5,10 +5,25 @@
 .order{
   text-align: center;
   margin: 10px;
-  height: 40px;
   width: 100%;
 }
 /*shadow box instead of border*/
 .order:hover{
   box-shadow: 0 2px 0 antiquewhite, 0 2px 0 antiquewhite inset;
+}
+
+.Input_forms {
+  color:whitesmoke;
+  /*margin: 0 10px 5px 5px;*/
+  background: transparent;
+  border-color: whitesmoke;
+  border-radius: 5px;
+  padding-left: inherit;
+  margin-top: 5px;
+  font-size: 25px;
+}
+
+input {
+  outline: none;
+  text-indent: 5px;
 }

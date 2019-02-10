@@ -23,17 +23,21 @@ export class OrderDetailComponent implements OnInit {
     private Save :SaveService
   ) { }
 
-  //passes the link taken from the URL to REST service and get OrderDetailList
-  //based on its order_id
   ngOnInit() {
+    this.getOrder();
+  }
+
+  private getOrder(){
+    //passes the link taken from the URL to REST service and gets OrderDetailList
+    //based on its order_id
     this.Display.displayOrderDetails(
       this.SelectedLink.snapshot.paramMap.get("id")
     ).subscribe(data=>this.order = data);
   }
 
-  qtyEdit(event: any, oD : iOrderDetail) {
-    let i: number = this.order.orderDetailList.indexOf(oD);
-    let qty: number = event.target.value;
+  qtyEdit(qty:number, oD : iOrderDetail) {
+    let i :number = this.order.orderDetailList.indexOf(oD); //index of edited orderDetail
+    if(qty<0) qty=0;
     //set new qty
     this.order.orderDetailList[i].qty = qty;
     //recalculate total sum to price*qty
@@ -48,4 +52,11 @@ export class OrderDetailComponent implements OnInit {
     }
   }
 
+  public async saveOrder(){
+    await this.Save.editOrder(this.order).subscribe(
+      data => this.message = data,
+      error => this.message = error
+    );
+    this.getOrder();
+  }
 }

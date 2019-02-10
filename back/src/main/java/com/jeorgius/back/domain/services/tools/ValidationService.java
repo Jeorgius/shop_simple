@@ -56,4 +56,14 @@ public class ValidationService {
             return e.getMessage();
         }
     }
+
+    public String validateOrderEdit(Order order){
+        try{
+            //same email and qty check for each orderDetail
+            orderCreation(order);
+            return "Success";
+        } catch (CreationException e){
+            return e.getMessage();
+        }
+    }
 }

@@ -1,8 +1,9 @@
 <div class="orders">
     <div><b>Order #{{order.id}}</b></div>
-    <div>{{order.email}}</div>
+    <div>Email: <input type="text" value="{{order.email}}" [(ngModel)]="order.email" class="Input_forms"></div>
     <div>Created on {{order.date | date: "hh:mm:ss dd.MM.yyyy"}}</div>
     <div><b>Total:</b> ${{order.sum}}</div>
+    <button (click)="saveOrder()" type="submit">Save order</button>
     <br/><br/>
   <div class="order">
     <div class="orderDetail"  *ngFor="let oD of order.orderDetailList">
@@ -11,9 +12,12 @@
       <div>Reserved price: {{oD.price}}</div>
       <div>Quantity: {{oD.qty}}</div>
       <div><b>Total:</b> ${{oD.total}}</div>
-      <br/><br/>
+      <br/>
       <div>
-        <input type="number" value="{{oD.qty}}" (keyup)="qtyEdit($event,oD)">
+        <input type="number" min="0" value="{{oD.qty}}" class="Input_forms"
+               oninput="validity.valid||(value='');"
+               (click)="qtyEdit(qtyInput.value,oD)"
+               (keyup)="qtyEdit(qtyInput.value,oD)" #qtyInput>
       </div>
     </div>
   </div>

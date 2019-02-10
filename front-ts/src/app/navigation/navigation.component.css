@@ -9,10 +9,11 @@ ul{
 li:hover{
   box-shadow: 0 2px 0 antiquewhite, 0 2px 0 antiquewhite inset;
 }
-ul, ul li {
+ul, ul li, li {
   list-style: none;
   padding:0;
   margin: 10px;
+  text-align: center;
 }
 a {
   text-decoration: none;
@@ -27,6 +28,7 @@ a:link {
   background-color: rgba(0, 0, 0, 0);
 }
 
-.content{
+.navigation_bar{
+  width: 100%;
   text-align: center;
 }

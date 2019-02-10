@@ -11,3 +11,18 @@
 .orderDetail{
   margin: 10px;
 }
+
+.Input_forms {
+  color:whitesmoke;
+  /*margin: 0 10px 5px 5px;*/
+  background: transparent;
+  border-color: whitesmoke;
+  border-radius: 5px;
+  padding-left: inherit;
+  margin-top: 5px;
+}
+
+input {
+  outline: none;
+  text-indent: 5px;
+}

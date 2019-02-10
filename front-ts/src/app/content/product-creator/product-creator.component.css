@@ -1,4 +1,4 @@
-.Login_forms {
+.Input_forms {
   width: 60%;
   color:whitesmoke;
   /*margin: 0 10px 5px 5px;*/
@@ -9,14 +9,15 @@
   margin-top: 5px;
   font-size: 25px;
 }
+
+input {
+  outline: none;
+  text-indent: 5px;
+}
+
 #registerButton {
   background-color: #77FF77;
   margin-top: 10px;
   outline: none;
   border-radius: 5px;
-}
-
-input {
-  outline: none;
-  text-indent: 5px;
 }

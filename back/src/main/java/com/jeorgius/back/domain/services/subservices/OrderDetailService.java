@@ -1,18 +1,14 @@
 package com.jeorgius.back.domain.services.subservices;
 
-import com.jeorgius.back.domain.entities.Order;
-import com.jeorgius.back.domain.entities.OrderDetail;
-import com.jeorgius.back.domain.entities.Product;
 import com.jeorgius.back.domain.services.subservices.order_detail.AddToCart;
 import com.jeorgius.back.domain.services.subservices.order_detail.OrderDetailAction;
-import com.jeorgius.back.domain.services.subservices.order_detail.OrderEdit;
 import com.jeorgius.back.domain.services.tools.ReposService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
-@Component
+@Service
 public class OrderDetailService {
 
     private ReposService repos;
@@ -26,11 +22,5 @@ public class OrderDetailService {
         OrderDetailAction addToCart = new AddToCart(repos);
         return addToCart.processOD(form);
     }
-
-    public String orderEdit(Map<String, Object> form){
-        OrderEdit orderEdit = new OrderEdit(repos);
-        return orderEdit.processOD(form);
-    }
-
 
 }
