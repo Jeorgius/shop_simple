@@ -3,6 +3,7 @@ package com.jeorgius.back.domain.entities;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name="order_detail", schema = "test_shop")
@@ -19,17 +20,22 @@ public class OrderDetail {
     private long total;
 
     public OrderDetail(){}
-    public OrderDetail(long price, int qty, long total, Order order) {
+    public OrderDetail(long price, int qty, long total, Product product, Order order) {
         this.price = price;
         this.qty = qty;
         this.total = total;
         this.order = order;
+        this.product = product;
     }
 
     @JsonBackReference // prevents recursion when serialized in JSON
     @JoinColumn(name="order_id")
     @ManyToOne(fetch = FetchType.EAGER)
     private Order order;
+
+    @OneToOne
+    @JoinColumn(name="product_id")
+    private Product product;
 
     public long getId() {
         return id;
@@ -69,5 +75,30 @@ public class OrderDetail {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof OrderDetail)) return false;
+        OrderDetail that = (OrderDetail) o;
+        return id == that.id &&
+                price == that.price &&
+                qty == that.qty &&
+                total == that.total;
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, price, qty, total);
     }
 }

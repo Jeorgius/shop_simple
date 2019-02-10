@@ -1,0 +1,13 @@
+.orders{
+  box-shadow: 0 2px 0 antiquewhite, 0 2px 0 antiquewhite inset;
+}
+
+.order{
+  text-align: center;
+  width: 100%;
+  display: flex;
+}
+
+.orderDetail{
+  margin: 10px;
+}

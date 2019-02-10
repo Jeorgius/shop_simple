@@ -1,6 +1,6 @@
 package com.jeorgius.back.rest;
 
-import com.jeorgius.back.domain.services.DbService;
+import com.jeorgius.back.domain.services.DbDisplayService;
 import com.jeorgius.back.domain.entities.Order;
 import com.jeorgius.back.domain.entities.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +16,12 @@ import java.util.List;
 @RestController
 public class RestGet {
 
-    private DbService db;
+    private DbDisplayService db;
 
     public RestGet(){}
 
     @Autowired
-    public RestGet(DbService db) {
+    public RestGet(DbDisplayService db) {
         this.db = db;
     }
 

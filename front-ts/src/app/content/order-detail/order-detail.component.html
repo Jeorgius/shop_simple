@@ -1,14 +1,20 @@
 <div class="orders">
-  <div class="order">
-    <div><b>#{{order.id}}</b></div>
+    <div><b>Order #{{order.id}}</b></div>
     <div>{{order.email}}</div>
-    <div>Created on {{order.date}}</div>
-    <div><b>Total:</b> {{order.sum}}</div>
-    <div class="order"  *ngFor="let oD of order.orderDetailList">
+    <div>Created on {{order.date | date: "hh:mm:ss dd.MM.yyyy"}}</div>
+    <div><b>Total:</b> ${{order.sum}}</div>
+    <br/><br/>
+  <div class="order">
+    <div class="orderDetail"  *ngFor="let oD of order.orderDetailList">
       <div><b>#{{oD.id}}</b></div>
+      <div><b>{{oD.product.title}}</b></div>
       <div>Reserved price: {{oD.price}}</div>
       <div>Quantity: {{oD.qty}}</div>
-      <div><b>Total:</b> {{oD.total}}</div>
+      <div><b>Total:</b> ${{oD.total}}</div>
+      <br/><br/>
+      <div>
+        <input type="number" value="{{oD.qty}}" (keyup)="qtyEdit($event,oD)">
+      </div>
     </div>
   </div>
 </div>

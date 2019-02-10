@@ -6,7 +6,7 @@
   <div class="order"  *ngFor="let order of orderList" (click)="goToOrder(order.id)">
     <div><b>#{{order.id}}</b></div>
     <div>{{order.email}}</div>
-    <div>Created on {{order.date}}</div>
-    <div><b>Total:</b> {{order.sum}}</div>
+    <div>Created on {{order.date | date: "hh:mm:ss dd.MM.yyyy"}}</div>
+    <div><b>Total:</b> ${{order.sum}}</div>
   </div>
 </div>

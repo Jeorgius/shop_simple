@@ -1,25 +1,23 @@
 package com.jeorgius.back.rest;
 
 import com.jeorgius.back.domain.entities.Order;
-import com.jeorgius.back.domain.services.DbService;
+import com.jeorgius.back.domain.services.DbSaveService;
 import com.jeorgius.back.domain.entities.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Map;
 
 @CrossOrigin
 @RestController
 public class RestPost {
 
-    private DbService db;
+    private DbSaveService db;
     public RestPost(){}
 
     @Autowired
-    public RestPost(DbService db) {
+    public RestPost(DbSaveService db) {
         this.db = db;
     }
 
@@ -30,14 +28,16 @@ public class RestPost {
 
     @PostMapping("/add_to_cart")
     public String addToCart(@RequestBody Map<String,Object> form) throws ParseException {
-        return db.addToCart(
-                form.get("product_id").toString(),
-                form.get("qty").toString(),
-                form.get("date").toString());
+        return db.addToCart(form);
     }
 
     @PostMapping("/create/order")
     public String createOrder(@RequestBody Order order){
         return db.createOrder(order);
+    }
+
+    @PostMapping("/edit/order")
+    public String editOrder(@RequestBody Map<String, Object> form){
+        return "Success";
     }
 }

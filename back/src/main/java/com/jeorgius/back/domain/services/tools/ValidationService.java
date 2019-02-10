@@ -1,10 +1,12 @@
-package com.jeorgius.back.domain.services;
+package com.jeorgius.back.domain.services.tools;
 
 import com.jeorgius.back.domain.entities.Order;
 import com.jeorgius.back.domain.entities.OrderDetail;
 import com.jeorgius.back.domain.entities.Product;
 import com.jeorgius.back.domain.exceptions.CreationException;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 @Service
 public class ValidationService {
@@ -29,6 +31,12 @@ public class ValidationService {
         return "Success";
     }
 
+    private String editForm(Map form) throws CreationException {
+        if(Long.parseLong((String)form.get("qty"))<=0) throw new CreationException("quantity should be greater than 0");
+        if(form.get("product_id")==null && form.get("oD_id")==null) throw new CreationException("ID is not set");
+        return "Success";
+    }
+
     public String validateCreation(Object created){
 
         try {
@@ -36,6 +44,14 @@ public class ValidationService {
             else if(created instanceof Order) return orderCreation((Order) created);
             else if(created instanceof OrderDetail) return orderDetailCreation((OrderDetail) created);
             else throw new CreationException("unknown type of object is being validated");
+        } catch (CreationException e){
+            return e.getMessage();
+        }
+    }
+
+    public String validateEdit(Map form){
+        try{
+            return editForm(form);
         } catch (CreationException e){
             return e.getMessage();
         }

@@ -1,6 +1,7 @@
 package com.jeorgius.back.domain.entities;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name="products", schema = "test_shop")
@@ -44,5 +45,21 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product)) return false;
+        Product product = (Product) o;
+        return id == product.id &&
+                price == product.price &&
+                Objects.equals(title, product.title) &&
+                Objects.equals(description, product.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, price, title, description);
     }
 }

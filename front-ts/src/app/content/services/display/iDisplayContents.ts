@@ -1,6 +1,7 @@
 // Interfaces to display content are all located here, so the files with them won't multiply very quickly
 
 import {Order} from "../../entities/order";
+import {Product} from "../../entities/product";
 
 export interface iProductList {
   id: number,
@@ -12,7 +13,7 @@ export interface iProductList {
 export interface iOrderList{
   id: number,
   email: string,
-  date: string,
+  date: Date,
   orderDetailList: [iOrderDetail],
   sum: number
 }
@@ -22,5 +23,6 @@ export interface iOrderDetail {
   price: number,
   qty: number,
   total: number,
-  order: Order
+  order: Order,
+  product: Product
 }
