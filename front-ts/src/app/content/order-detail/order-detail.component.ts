@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
-import {iOrderDetail, iOrderList} from "../services/display/iDisplayContents";
+import {iOrderDetail} from "../services/display/iDisplayContents";
 import {DisplayService} from "../services/display/display.service";
 import {Order} from "../entities/order";
 import {SaveService} from "../services/save/save.service";
-import {forEach} from "@angular/router/src/utils/collection";
+import {XmlMarshallerService} from "../services/xml/xml-marshaller.service";
+import {saveAs} from "file-saver";
 
 @Component({
   selector: 'app-order-detail',
@@ -20,7 +20,8 @@ export class OrderDetailComponent implements OnInit {
   constructor(
     private SelectedLink :ActivatedRoute,
     private Display :DisplayService,
-    private Save :SaveService
+    private Save :SaveService,
+    private Xml :XmlMarshallerService
   ) { }
 
   ngOnInit() {
@@ -58,5 +59,14 @@ export class OrderDetailComponent implements OnInit {
       error => this.message = error
     );
     this.getOrder();
+  }
+
+  public downloadXml(){
+    this.Xml.downloadXml(this.order).subscribe(
+      data => {
+        //save incoming data in xml to filename = 'order' + order_id
+        saveAs(data,"order"+this.order.id);
+      }
+    )
   }
 }

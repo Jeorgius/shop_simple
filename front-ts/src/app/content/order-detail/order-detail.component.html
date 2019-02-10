@@ -4,6 +4,7 @@
     <div>Created on {{order.date | date: "hh:mm:ss dd.MM.yyyy"}}</div>
     <div><b>Total:</b> ${{order.sum}}</div>
     <button (click)="saveOrder()" type="submit">Save order</button>
+    <button (click)="downloadXml()" type="submit">Download XML</button>
     <br/><br/>
   <div class="order">
     <div class="orderDetail"  *ngFor="let oD of order.orderDetailList">

@@ -12,6 +12,8 @@ import { ProductCreatorComponent } from './content/product-creator/product-creat
 import { NavigationComponent } from './navigation/navigation.component';
 import { MainComponent } from './content/main/main.component';
 import {DisplayService} from "./content/services/display/display.service";
+import {SaveService} from "./content/services/save/save.service";
+import {XmlMarshallerService} from "./content/services/xml/xml-marshaller.service";
 
 @NgModule({
   declarations: [
@@ -29,7 +31,11 @@ import {DisplayService} from "./content/services/display/display.service";
     AppRoutingModule,
     FormsModule
   ],
-  providers: [DisplayService],
+  providers: [
+    DisplayService,
+    SaveService,
+    XmlMarshallerService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
