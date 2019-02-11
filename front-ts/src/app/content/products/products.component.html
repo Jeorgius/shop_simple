@@ -1,7 +1,8 @@
+<div [ngClass]="msgClass()">{{message}}</div>
 <div class="products">
   <div class="product" *ngFor="let product of products" >
     <div><b>ID: </b>{{product.id}}</div>
-    <div>${{product.price}}</div>
+    <div>${{product.price | price | number:".2" }}</div>
     <div><b>{{product.title}}</b></div>
     <div>{{product.description}}</div>
     <br/>

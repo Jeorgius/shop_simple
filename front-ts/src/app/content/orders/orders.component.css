@@ -27,3 +27,15 @@ input {
   outline: none;
   text-indent: 5px;
 }
+
+.error, .message{
+  font-weight: bold;
+}
+
+.message{
+  color: lawngreen;
+}
+
+.error{
+  color: orangered;
+}

@@ -13,15 +13,20 @@ import {SaveService} from "../services/save/save.service";
 export class ProductCreatorComponent implements OnInit {
 
   public newProduct = new Product('',0,'');
-  public resultMsg :string = "";
+  public message :string = "";
+
   constructor(private Save :SaveService) { }
 
   ngOnInit() {}
 
-  submitProduct(){
+ submitProduct(){
     this.Save.saveProduct(this.newProduct)
       .subscribe(
-        data => this.resultMsg=data.toString(),
-      error => this.resultMsg=error);
+        data => this.message=data.toString(),
+      error => this.message=error);
+  }
+
+  msgClass(){
+    return this.message.includes("Success")? "message" : "error";
   }
 }

@@ -14,18 +14,31 @@ export class SaveService {
   constructor(private Http :HttpClient) {}
 
   saveProduct(newProduct :Product){
-    return this.Http.post<string>(this.JavaServer+"/create/product", newProduct);
+    return this.Http.post(this.JavaServer+"/create/product", newProduct,
+      {responseType: 'text'}); //I want to receive plain text to display it as result
   }
 
   addToLastOrder(id,qty){
-    return this.Http.post<string>(this.JavaServer+"/add_to_cart", {product_id: id, qty: qty, date: new Date()})
+    return this.Http.post(
+      this.JavaServer+"/add_to_cart",
+      {product_id: id, qty: qty, date: new Date()},
+      {responseType: 'text'}
+      )
   }
 
   createOrder(email){
-    return this.Http.post<string>(this.JavaServer+"/create/order", new Order(email,0, new Date()));
+    return this.Http.post(
+      this.JavaServer+"/create/order",
+      new Order(email,0, new Date()),
+      {responseType: 'text'}
+    );
   }
 
   editOrder(order:iOrderList){
-    return this.Http.post<string>(this.JavaServer+"/edit/order", order);
+    return this.Http.post(
+      this.JavaServer+"/edit/order",
+      order,
+      {responseType: 'text'}
+    );
   }
 }

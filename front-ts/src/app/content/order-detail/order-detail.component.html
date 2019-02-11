@@ -2,17 +2,18 @@
     <div><b>Order #{{order.id}}</b></div>
     <div>Email: <input type="text" value="{{order.email}}" [(ngModel)]="order.email" class="Input_forms"></div>
     <div>Created on {{order.date | date: "hh:mm:ss dd.MM.yyyy"}}</div>
-    <div><b>Total:</b> ${{order.sum}}</div>
+    <div><b>Total:</b> ${{order.sum | price | number:".2" }}</div>
     <button (click)="saveOrder()" type="submit">Save order</button>
     <button (click)="downloadXml()" type="submit">Download XML</button>
+    <div [ngClass]="msgClass()">{{message}}</div>
     <br/><br/>
   <div class="order">
     <div class="orderDetail"  *ngFor="let oD of order.orderDetailList">
       <div><b>#{{oD.id}}</b></div>
       <div><b>{{oD.product.title}}</b></div>
-      <div>Reserved price: {{oD.price}}</div>
+      <div>Reserved price: {{oD.price | price | number:".2" }}</div>
       <div>Quantity: {{oD.qty}}</div>
-      <div><b>Total:</b> ${{oD.total}}</div>
+      <div><b>Total:</b> ${{oD.total | price | number:".2" }}</div>
       <br/>
       <div>
         <input type="number" min="0" value="{{oD.qty}}" class="Input_forms"

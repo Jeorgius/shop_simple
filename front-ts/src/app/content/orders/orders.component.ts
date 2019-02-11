@@ -14,7 +14,7 @@ import {SaveService} from "../services/save/save.service";
 export class OrdersComponent implements OnInit {
 
   public orderList = [];
-  public msg: string;
+  public message = "";
 
   constructor(
     private Display :DisplayService,
@@ -32,9 +32,12 @@ export class OrdersComponent implements OnInit {
 
   createOrder(email){
     this.Save.createOrder(email).subscribe(
-      data=>this.msg=data,
-      error => this.msg=error
+      data=>this.message=data,
+      error => this.message=error
     );
   }
 
+  msgClass(){
+    return this.message.includes("Success")? "message" : "error";
+  }
 }

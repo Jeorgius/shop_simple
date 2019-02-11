@@ -14,9 +14,11 @@ import { MainComponent } from './content/main/main.component';
 import {DisplayService} from "./content/services/display/display.service";
 import {SaveService} from "./content/services/save/save.service";
 import {XmlMarshallerService} from "./content/services/xml/xml-marshaller.service";
+import {PricePipe} from "./pipes/PricePipe";
 
 @NgModule({
   declarations: [
+    PricePipe,
     AppComponent,
     ProductsComponent,
     OrdersComponent,

@@ -13,7 +13,7 @@ import {SaveService} from "../services/save/save.service";
 export class ProductsComponent implements OnInit {
 
   public products = [];
-  public msg: string;
+  public message = "";
 
   constructor(
     private Display:DisplayService,
@@ -26,8 +26,12 @@ export class ProductsComponent implements OnInit {
 
   addToOrder(product_id,qty){
     this.Add.addToLastOrder(product_id,qty).subscribe(
-      data=>this.msg=data,
-      error=>this.msg=error
-    )
+      data=>this.message=data,
+      error=>this.message=error
+    );
+  }
+
+  msgClass(){
+    return this.message.includes("Success")? "message" : "error";
   }
 }

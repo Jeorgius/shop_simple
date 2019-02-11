@@ -15,7 +15,7 @@ import {saveAs} from "file-saver";
 export class OrderDetailComponent implements OnInit {
 
   public order = new Order('',0,new Date());
-  public message: string;
+  public message = "";
 
   constructor(
     private SelectedLink :ActivatedRoute,
@@ -53,6 +53,7 @@ export class OrderDetailComponent implements OnInit {
     }
   }
 
+  //async to wait for unnecessary rows being deleted from database
   public async saveOrder(){
     await this.Save.editOrder(this.order).subscribe(
       data => this.message = data,
@@ -60,6 +61,12 @@ export class OrderDetailComponent implements OnInit {
     );
     this.getOrder();
   }
+
+  msgClass(){
+    return this.message.startsWith("S")? "message" : "error";
+  }
+
+
 
   public downloadXml(){
     this.Xml.downloadXml(this.order).subscribe(

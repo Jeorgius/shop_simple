@@ -38,7 +38,7 @@ public class AddToCart implements OrderDetailAction {
 
         //save to database
         repos.orderRepo.save(order);
-        return "Success";
+        return "Success: added to cart";
     }
 
     private OrderDetail getOrderDetail(Order order, long product_id, long qty){

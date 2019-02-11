@@ -21,3 +21,15 @@ input {
   outline: none;
   border-radius: 5px;
 }
+
+.error, .message{
+  font-weight: bold;
+}
+
+.message{
+  color: lawngreen;
+}
+
+.error{
+  color: orangered;
+}
