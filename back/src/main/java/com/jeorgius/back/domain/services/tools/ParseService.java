@@ -10,6 +10,8 @@ import java.util.Date;
 public class ParseService {
     public Date parseJsDate(String date) {
         try{
+            //dates from JavaScript comes in "YYYY-MM-ddTHH:mm:ss.ms.nsZ
+            //we should delete T, and Z in the end
             return new SimpleDateFormat().
                     parse(date
                             .replace("T", " ")

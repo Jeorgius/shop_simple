@@ -14,6 +14,13 @@ public class Product {
     private String title;
     private String description;
 
+    public Product(){}
+
+    public Product(long price, String title, String description) {
+        this.price = price;
+        this.title = title;
+        this.description = description;
+    }
 
     public long getPrice() {
         return price;
